@@ -1,5 +1,7 @@
 <?php
 
-include "contact.view.php";
+$heading = "Contact us";
+
+include "views/contact.view.php";
 
 ?>
