@@ -11,7 +11,7 @@ function dd($value) {
     die();
 }
 
-dd($_SERVER);
+//dd($_SERVER);
 
 require "views/index.view.php";
 
