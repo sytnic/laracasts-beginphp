@@ -2,6 +2,6 @@
 
 $heading = "Contact us";
 
-include "views/contact.view.php";
+require "views/contact.view.php";
 
 ?>
