@@ -2,8 +2,17 @@
 
 require 'functions.php';
 
-$heading = "Home";
+$uri = $_SERVER['REQUEST_URI'];
 
-require "views/index.view.php";
+//echo $uri;
+
+if ($uri == '/') {
+    require 'controllers/index.php';
+} elseif ($uri == '/about') {
+    require 'controllers/about.php';
+} elseif ($uri == '/contact') {
+    require 'controllers/contact.php';
+}
+
 
 ?>
