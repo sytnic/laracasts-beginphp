@@ -2,7 +2,16 @@
 
 require 'functions.php';
 
-$uri = $_SERVER['REQUEST_URI'];
+// парсинг url-строки с выдергиванием главного пути без параметров запроса
+//$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+//dd($uri);
+// or:
+$uri_request = $_SERVER['REQUEST_URI'];
+$uri_array = parse_url($uri_request);
+$uri = $uri_array['path'];
+
+// @return array
+//dd(parse_url($uri));
 
 //echo $uri;
 
