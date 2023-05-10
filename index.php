@@ -18,22 +18,28 @@ $routes = [
     '/contact' => 'controllers/contact.php'
 ];
 
+/**
+ * Показ своей страницы ошибки
+ * 
+ * @param int - по умолчанию 404
+ * 
+ */
+function abort($code = 404) {
+    http_response_code($code);
+
+    // Вызов своей страницы для ошибки 404
+    require "views/{$code}.php";
+
+    // остановка загрузки страницы
+    die();
+} 
+
 // направление
 if (array_key_exists($uri, $routes)) {
     // если ключ есть в роутах, задействуй его
     require $routes[$uri];
-
 } else {  // иначе
-    http_response_code(404);
-
-    // Вызов своего сообщения для ошибки 404
-    // echo "Sorry. Not Found.";
-
-    // Вызов своей страницы для ошибки 404
-    require 'views/404.php';
-
-    // остановка загрузки страницы
-    die();
+    abort();
 }
 
 
