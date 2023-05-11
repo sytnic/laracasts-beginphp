@@ -19,7 +19,7 @@ $routes = [
 ];
 
 /**
- * Показ своей страницы ошибки
+ * Показ своей страницы ошибки (по умолч. 404)
  * 
  * @param int - по умолчанию 404
  * 
@@ -32,15 +32,29 @@ function abort($code = 404) {
 
     // остановка загрузки страницы
     die();
-} 
-
-// направление
-if (array_key_exists($uri, $routes)) {
-    // если ключ есть в роутах, задействуй его
-    require $routes[$uri];
-} else {  // иначе
-    abort();
 }
+
+/**
+ * Вызывает затребование страницы согласно маршруту
+ * или 404
+ * 
+ * @param string $uri
+ * @param array  $routes
+ * 
+ */
+function routeToController($uri, $routes) {
+    // направление
+    if (array_key_exists($uri, $routes)) {
+        // если ключ есть в роутах, задействуй его
+        require $routes[$uri];
+    } else {  // иначе
+        abort();
+    }
+}
+
+routeToController($uri, $routes);
+
+
 
 
 ?>
