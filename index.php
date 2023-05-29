@@ -8,7 +8,7 @@ require 'Database.php';
 $db = new Database;
 
 // Для всех записей из БД
-$posts = $db->query("select * from posts")->fetchAll(PDO::FETCH_ASSOC);
+$posts = $db->query("select * from posts")->fetchAll();
 dd($posts);
 
 // Для одной записи из БД
