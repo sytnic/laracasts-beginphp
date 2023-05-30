@@ -4,8 +4,14 @@ require 'functions.php';
 //require 'router.php';
 require 'Database.php';
 
+$config = [
+    'host' => 'localhost',
+    'port' => 3306,
+    'dbname' => 'myapp',
+    'charset' => 'utf8mb4',
+];
 
-$db = new Database;
+$db = new Database($config);
 
 // Для всех записей из БД
 $posts = $db->query("select * from posts")->fetchAll();
