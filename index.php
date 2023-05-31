@@ -5,16 +5,20 @@ require 'functions.php';
 require 'Database.php';
 
 $config = require('config.php');
-
 $db = new Database($config['database']);
 
+// Возможность для SQL-инъекции,
+// т.к. в параметре можно вбить всё, что угодно, любую строку.
+$id = $_GET['id'];
+$query = "select * from posts where id = {$id}";
+
+dd($query);
+
 // Для всех записей из БД
-$posts = $db->query("select * from posts")->fetchAll();
+$posts = $db->query($query)->fetch();
+
 dd($posts);
 
-// Для одной записи из БД
-//$post = $db->query("select * from posts where id > 1")->fetch(PDO::FETCH_ASSOC);
-//dd($post['title']);
 
 /*
 foreach ($posts as $post) {
