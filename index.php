@@ -10,12 +10,12 @@ $db = new Database($config['database']);
 // Возможность для SQL-инъекции,
 // т.к. в параметре можно вбить всё, что угодно, любую строку.
 $id = $_GET['id'];
-$query = "select * from posts where id = {$id}";
 
-dd($query);
+// Теперь работает подстановочный знак ?, а не строка из запроса
+$query = "select * from posts where id = ?";
 
 // Для всех записей из БД
-$posts = $db->query($query)->fetch();
+$posts = $db->query($query, [$id])->fetch();
 
 dd($posts);
 

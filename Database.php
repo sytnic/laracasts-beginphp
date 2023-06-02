@@ -6,6 +6,7 @@ class Database {
 
     public function __construct($config, $username='root', $password='')
     {                   
+        // создаёт строку типа "mysql:host=localhost;port=3306;dbname=myapp;"
         $dsn = "mysql:".http_build_query($config, '', ';');
         
         // параметры: PDO(connection, user, password, parameters)
@@ -14,11 +15,11 @@ class Database {
         ]);
     }
 
-    public function query($query)
+    public function query($query, $params=[])
     {
         $statement = $this->connection->prepare($query);
         
-        $statement->execute();
+        $statement->execute($params);
         
         return $statement;
     }
