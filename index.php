@@ -11,11 +11,12 @@ $db = new Database($config['database']);
 // т.к. в параметре можно вбить всё, что угодно, любую строку.
 $id = $_GET['id'];
 
-// Теперь работает подстановочный знак ?, а не строка из запроса
-$query = "select * from posts where id = ?";
+// Теперь работает подстановочный знак ? или :id, а не строка из запроса
+$query = "select * from posts where id = :id";
 
-// Для всех записей из БД
-$posts = $db->query($query, [$id])->fetch();
+// Для всех записей из БД.
+// Не обязательно в ключе повторять идентично :id из select запроса
+$posts = $db->query($query, [':id' => $id])->fetch();
 
 dd($posts);
 
