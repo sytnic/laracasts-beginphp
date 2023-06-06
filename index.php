@@ -1,7 +1,7 @@
 <?php
 
 require 'functions.php';
-//require 'router.php';
+require 'router.php';
 require 'Database.php';
 
 $config = require('config.php');
@@ -18,7 +18,7 @@ $query = "select * from posts where id = :id";
 // Не обязательно в ключе повторять идентично :id из select запроса
 $posts = $db->query($query, [':id' => $id])->fetch();
 
-dd($posts);
+//dd($posts);
 
 
 /*
