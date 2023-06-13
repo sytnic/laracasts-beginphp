@@ -9,12 +9,16 @@ $note = $db->query('select * from notes where id = :id', [
     'id'   => $_GET['id']
 ])->fetch();
 
+// если заметка не найдена по SQL-запросу - 404
 if(!$note){
     abort();
 }
 
-if($note['user_id'] != 1){
-    abort(403);
+$currentUserId = 1;
+
+// если user_id из строки табицы по SQL-запросу не равен 1 - 403
+if($note['user_id'] != $currentUserId){
+    abort(Response::FORBIDDEN);
 }
 
 require "views/note.view.php";
