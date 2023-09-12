@@ -12,11 +12,14 @@ $note = $db->query('select * from notes where id = :id', [
 
 $currentUserId = 1;
 
-// если user_id из строки табицы по SQL-запросу не равен 1 - 403
+authorize($note['user_id'] == $currentUserId);
+
+// если user_id из строки таблицы по SQL-запросу не равен 1 - 403
+/*
 if($note['user_id'] != $currentUserId){
     abort(Response::FORBIDDEN);
 }
-
+*/
 require "views/note.view.php";
 
 ?>
