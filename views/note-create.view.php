@@ -4,7 +4,16 @@
 
   <main>
     <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-      <h1>Create a note</h1>
+      <form method="POST">
+        <label for="body">Description</label>
+        <div>
+          <textarea id="body" name="body"></textarea>
+        </div>
+
+        <p>
+          <button type="submit">Create</button>
+        </p>
+      </form>
     </div>
   </main>
 
