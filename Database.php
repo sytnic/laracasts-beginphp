@@ -33,8 +33,20 @@ class Database {
         return $this;
     }
 
-    public function fetch()
+    public function find()
     {
         return $this->statement->fetch();
+    }
+
+    public function findOrFail()
+    {
+        $result = $this->find();
+
+        // если результат не найден по SQL-запросу - то 404
+        if(!$result){
+            abort();
+        }
+
+        return $result;
     }
 }

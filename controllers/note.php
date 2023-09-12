@@ -7,12 +7,8 @@ $heading = "Note";
 
 $note = $db->query('select * from notes where id = :id', [
     'id'   => $_GET['id']
-])->fetch();
+])->findOrFail();
 
-// если заметка не найдена по SQL-запросу - 404
-if(!$note){
-    abort();
-}
 
 $currentUserId = 1;
 
