@@ -1,22 +1,7 @@
 <?php
 
-// парсинг url-строки с выдергиванием 
-// главного пути без параметров запроса
+$routes = require('routes.php');
 
-$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
-// or:
-//$uri_request = $_SERVER['REQUEST_URI'];
-//$uri_array = parse_url($uri_request);
-//$uri = $uri_array['path'];
-
-// маршруты
-$routes = [
-    '/'        => 'controllers/index.php',
-    '/about'   => 'controllers/about.php',
-    '/notes'   => 'controllers/notes.php',
-    '/note'    => 'controllers/note.php',
-    '/contact' => 'controllers/contact.php'
-];
 
 /**
  * Показ своей страницы ошибки (по умолч. 404)
@@ -51,6 +36,14 @@ function routeToController($uri, $routes) {
         abort();
     }
 }
+
+// парсинг url-строки с выдергиванием 
+// главного пути без параметров запроса
+$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+// or:
+//$uri_request = $_SERVER['REQUEST_URI'];
+//$uri_array = parse_url($uri_request);
+//$uri = $uri_array['path'];
 
 routeToController($uri, $routes);
 
