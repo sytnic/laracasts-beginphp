@@ -8,7 +8,7 @@ $heading = "My Notes";
 //$notes = [];
 //dd($db);
 
-$notes = $db->query('select * from notes where user_id = 1')->fetchAll();
+$notes = $db->query('select * from notes where user_id = 1')->get();
 
 //dd($notes);
 
