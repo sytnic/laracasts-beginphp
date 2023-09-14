@@ -10,8 +10,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $errors = [];
 
     // если длина сообщения равна нулю, то сообщение об ошибке
-    if(strlen($_POST['body']) == 0) {
+    if (strlen($_POST['body']) == 0) {
       $errors['body'] = 'A body is required';
+    }
+
+    // если длина слишком большая
+    if (strlen($_POST['body']) > 100) {
+      $errors['body'] = 'A body is too long';
     }
 
     // если ошибок нет, то делаем вставку в БД
