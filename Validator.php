@@ -8,6 +8,7 @@ class Validator
      */
      public function string($value)
      {
-        return strlen($value) == 0;
+        // trim - защита от новой заметки из одних пробелов 
+        return strlen(trim($value)) == 0;
      }
 }
