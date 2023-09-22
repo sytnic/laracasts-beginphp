@@ -11,11 +11,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     // массив для сообщений об ошибках
     $errors = [];
 
-    $validator = new Validator;
+
 
     // если длина сообщения равна нулю, то сообщение об ошибке
     // или длина слишком большая
-    if (! $validator->string($_POST['body'], 1, 140))  {
+    if (! Validator::string($_POST['body'], 1, 140))  {
       $errors['body'] = 'A body of no more than 140 characters is required.';
     }
 
