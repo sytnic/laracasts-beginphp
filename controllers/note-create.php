@@ -7,6 +7,18 @@ $db = new Database($config['database']);
 
 $heading = "Create Note";
 
+/*
+if (! Validator::email('sdfdsfdsfdsfssdassa')) {
+  dd('that is not a valid email');
+}
+
+// string(14) "email@email.ru"
+dd(Validator::email('email@email.ru'));
+// bool(false)
+dd(Validator::email('sdfdsfdsfdsfssdassa'));
+*/
+
+
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     // массив для сообщений об ошибках
     $errors = [];
