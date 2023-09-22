@@ -42,4 +42,4 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     // если ошибки есть, загрузится вью с массивом ошибок
 }
 
-require 'views/note-create.view.php';
+require 'views/notes/create.view.php';

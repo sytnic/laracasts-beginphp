@@ -1,6 +1,6 @@
-<?php require('partials/head.php');   ?>
-<?php require('partials/nav.php');    ?>
-<?php require('partials/banner.php'); ?>
+<?php require('views/partials/head.php');   ?>  
+<?php require('views/partials/nav.php');    ?>
+<?php require('views/partials/banner.php'); ?>
 
 <main>
   <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
@@ -23,7 +23,7 @@
       <div class="space-y-12">
         <div class="border-b border-gray-900/10 pb-12">
 
-          <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <div class="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
             <div class="col-span-full">
               <label for="body" class="block text-sm font-medium leading-6 text-gray-900">Body</label>
@@ -66,4 +66,4 @@
   </div>
 </main>
 
-<?php require('partials/footer.php');  ?>
+<?php require('views/partials/footer.php');  ?>
