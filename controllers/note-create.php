@@ -14,13 +14,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $validator = new Validator;
 
     // если длина сообщения равна нулю, то сообщение об ошибке
-    if ($validator->string($_POST['body']))  {
-      $errors['body'] = 'A body is required';
-    }
-
-    // если длина слишком большая
-    if (strlen($_POST['body']) > 100) {
-      $errors['body'] = 'A body is too long';
+    // или длина слишком большая
+    if (! $validator->string($_POST['body'], 1, 140))  {
+      $errors['body'] = 'A body of no more than 140 characters is required.';
     }
 
     // если ошибок нет, то делаем вставку в БД
