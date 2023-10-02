@@ -1,5 +1,7 @@
 <?php
 
+//var_dump("x hello");
+
 return [
     // подключение к базе данных
     'database' => [

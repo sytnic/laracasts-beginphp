@@ -1,9 +1,27 @@
+# Кодировка отдаваемых файлов
 AddDefaultCharset utf-8
 
+# use mod_rewrite for pretty URL support
 RewriteEngine on
+
 RewriteBase /
 
+# If a directory or a file exists, use the request directly
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-
+# Otherwise forward the request to index.php
 RewriteRule ^(.*)$ index.php
+# RewriteRule . index.php
+
+# use public/index.php as index file
+DirectoryIndex public/index.php
+
+# https://webhost1.ru/help/generic/htaccess/all#menu1
+
+<Files router.php>
+  deny from all
+</Files>
+
+<Files config.php>
+  deny from all
+</Files>

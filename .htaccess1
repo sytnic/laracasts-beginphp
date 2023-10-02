@@ -1,0 +1,21 @@
+# Несколько файлов htaccess сохранены здесь на всякий случай
+# из-за сложности их использования на OSPanel:
+# OSPanel работает на Windows и поэтому
+# нет доступа к обычным файлам настроек Apache как в Linux (/sites-available/*.conf и т.д).
+# Здесь требуется достичь недоступности файлов в корневой папке 
+# и перенаправления всех запросов в папку /public,
+# при этом нужно сохранить работоспособность маршрутов.
+#  
+
+
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{THE_REQUEST} /public/([^\s?]*) [NC]
+RewriteRule ^ %1 [L,NE,R=302]
+
+RewriteRule ^((?!public/).*)$ public/$1 [L,NC]
+
+# https://stackoverflow.com/questions/23635746/htaccess-redirect-from-site-root-to-public-folder-hiding-public-in-url
+
+
