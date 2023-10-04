@@ -1,11 +1,13 @@
 <?php
 
-require 'Validator.php';
+require base_path('Validator.php');
 
 $config = require base_path('config.php');
 $db = new Database($config['database']);
 
 $heading = "Create Note";
+// массив для сообщений об ошибках
+$errors = [];
 
 /*
 if (! Validator::email('sdfdsfdsfdsfssdassa')) {
@@ -20,11 +22,6 @@ dd(Validator::email('sdfdsfdsfdsfssdassa'));
 
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    // массив для сообщений об ошибках
-    $errors = [];
-
-
-
     // если длина сообщения равна нулю, то сообщение об ошибке
     // или длина слишком большая
     if (! Validator::string($_POST['body'], 1, 140))  {
