@@ -4,7 +4,7 @@ const BASE_PATH = __DIR__ . '/../';
 
 //var_dump(BASE_PATH);
 
-require BASE_PATH.'functions.php';
+require BASE_PATH.'Core/functions.php';
 
 // встроенная функция php будет пытаться найти 
 // неназванный ранее, но запрашиваемый класс;
@@ -17,13 +17,13 @@ spl_autoload_register(function($class){
     //var_dump(base_path($class.'.php'));
 
     // запрашивание класса
-    require base_path($class.'.php');
+    require base_path("Core/{$class}.php");
 });
 
 // Эти классы теперь запрашиваются через spl_autoload_register()
 //require base_path('Database.php');
 //require base_path('Response.php');
-require base_path('router.php');
+require base_path('Core/router.php');
 
 
 ?>

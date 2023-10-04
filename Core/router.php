@@ -1,6 +1,6 @@
 <?php
 
-$routes = require('routes.php');
+
 
 
 /**
@@ -13,7 +13,7 @@ function abort($code = 404) {
     http_response_code($code);
 
     // Вызов своей страницы для ошибки 404
-    require "views/{$code}.php";
+    require base_path("views/{$code}.php");
 
     // остановка загрузки страницы
     die();
@@ -31,11 +31,13 @@ function routeToController($uri, $routes) {
     // направление
     if (array_key_exists($uri, $routes)) {
         // если ключ есть в роутах, задействуй его
-        require $routes[$uri];
+        require base_path($routes[$uri]);
     } else {  // иначе
         abort();
     }
 }
+
+$routes = require base_path('routes.php');
 
 // парсинг url-строки с выдергиванием 
 // главного пути без параметров запроса
