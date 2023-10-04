@@ -1,6 +1,6 @@
 <?php
 
-$config = require('config.php');
+$config = require base_path('config.php');
 $db = new Database($config['database']);
 
 $heading = "Note";
@@ -14,7 +14,12 @@ $currentUserId = 1;
 
 authorize($note['user_id'] == $currentUserId);
 
-
-require "views/notes/show.view.php";
+// вместо этого:
+// require "views/notes/show.view.php";
+// это:
+view("notes/show.view.php", [
+    'heading' => $heading,
+    'note' => $note
+  ]);
 
 ?>

@@ -29,8 +29,11 @@ function base_path($path) {
     return BASE_PATH.$path;
 }
 
-function view($path) {
-    return base_path('views/'.$path);  // /views/index.view.php
+function view($path, $attributes = []) {
+    extract($attributes); // встроенная функция
+    //dd($foo);
+    //dd($heading);
+    require base_path('views/'.$path);  // /views/index.view.php
 }
 
 ?>

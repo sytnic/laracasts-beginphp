@@ -4,7 +4,7 @@ AddDefaultCharset utf-8
 # use mod_rewrite for pretty URL support
 RewriteEngine on
 
-RewriteBase /
+RewriteBase /public/
 
 # If a directory or a file exists, use the request directly
 RewriteCond %{REQUEST_FILENAME} !-f
