@@ -1,6 +1,10 @@
 <?php
 
+use Core\Database;
+
 $config = require base_path('config.php');
+// использовать слэш Core\ или use в начале файла
+//$db = new Core\Database($config['database']);
 $db = new Database($config['database']);
 
 $heading = "My Notes";

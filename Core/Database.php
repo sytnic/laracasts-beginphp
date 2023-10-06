@@ -1,5 +1,9 @@
 <?php
 
+namespace Core;
+
+use PDO;
+
 class Database {
 
     public $connection;
@@ -14,6 +18,7 @@ class Database {
         // создаёт строку типа "mysql:host=localhost;port=3306;dbname=myapp;"
         $dsn = "mysql:".http_build_query($config, '', ';');
         
+        // при пространстве имен можно указывать \PDO или use в начале файла
         // параметры: PDO(connection, user, password, parameters)
         $this->connection = new PDO($dsn, $username, $password, [
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
