@@ -6,22 +6,43 @@ $config = require base_path('config.php');
 $db = new Database($config['database']);
 
 $heading = "Note";
-
-$note = $db->query('select * from notes where id = :id', [
-    'id'   => $_GET['id']
-])->findOrFail();
-
-
 $currentUserId = 1;
 
-authorize($note['user_id'] == $currentUserId);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-// вместо этого:
-// require "views/notes/show.view.php";
-// это:
-view("notes/show.view.php", [
-    'heading' => $heading,
-    'note' => $note
-  ]);
+  // delete action 
+
+  $note = $db->query('select * from notes where id = :id', [
+      'id' => $_GET['id']
+  ])->findOrFail();
+
+  authorize($note['user_id'] === $currentUserId);
+
+  $db->query('delete from notes where id = :id', [
+      'id' => $_GET['id']
+]);
+
+  header('location: /notes');
+  exit();
+
+} else {
+
+  // show action
+
+  $note = $db->query('select * from notes where id = :id', [
+      'id'   => $_GET['id']
+  ])->findOrFail();
+
+  authorize($note['user_id'] == $currentUserId);
+
+  // вместо этого:
+  // require "views/notes/show.view.php";
+  // это:
+  view("notes/show.view.php", [
+      'heading' => $heading,
+      'note' => $note
+    ]);
+
+}
 
 ?>
