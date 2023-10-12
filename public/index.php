@@ -32,6 +32,12 @@ spl_autoload_register(function($class){
 // Эти классы теперь запрашиваются через spl_autoload_register()
 //require base_path('Database.php');
 //require base_path('Response.php');
+
+// Логика маршрутов:
+// 1. Загружается страница Core/router.php
+// В дальнейшем, любые внезапно требующиеся классы, 
+// будут сразу загружены благодаря функции spl_autoload_register()
+
 require base_path('Core/router.php');
 
 

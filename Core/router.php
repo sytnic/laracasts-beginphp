@@ -25,9 +25,14 @@ function abort($code = 404) {
  * 
  * @param string $uri
  * @param array  $routes
- * 
+ *  
  */
 function routeToController($uri, $routes) {
+//   5. И, наконец, если ключ (вбитое в адресную строку)
+//   есть в массиве маршрутов,
+//   то вызывается (require) на загрузку 
+//   соответствующая страница php, указанная в массиве (контроллер).
+
     // направление
     if (array_key_exists($uri, $routes)) {
         // если ключ есть в роутах, задействуй его
@@ -37,7 +42,14 @@ function routeToController($uri, $routes) {
     }
 }
 
+// Логика маршрутов:
+// 2. Загружается массив из маршрутов 
+// (до тех пор, пока маршруты созданы как массив)
+
 $routes = require base_path('routes.php');
+
+// 3. Анализатором php изучается, 
+// что именно вбито в адресную строку.
 
 // парсинг url-строки с выдергиванием 
 // главного пути без параметров запроса
@@ -46,6 +58,8 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 //$uri_request = $_SERVER['REQUEST_URI'];
 //$uri_array = parse_url($uri_request);
 //$uri = $uri_array['path'];
+
+// 4. Вызывается функция
 
 routeToController($uri, $routes);
 
