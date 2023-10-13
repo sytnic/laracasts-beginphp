@@ -1,7 +1,91 @@
 <?php
 
+namespace Core;
+
+class Router {
+
+    public $routes = [];
+
+    // после вызова соответствующего метода
+    // будет заполнен массив $this->$routes
+
+    public function get($uri, $controller)
+    {
+        $this->routes[] = [
+            'uri' => $uri,
+            'controller' => $controller,
+            'method' => 'GET'
+        ];
+    }
+
+    public function post($uri, $controller)
+    {
+        $this->routes[] = [
+            'uri' => $uri,
+            'controller' => $controller,
+            'method' => 'POST'
+        ];
+    }
+
+    public function delete($uri, $controller)
+    {
+        $this->routes[] = [
+            'uri' => $uri,
+            'controller' => $controller,
+            'method' => 'DELETE'
+        ];
+    }
+
+    public function patch($uri, $controller)
+    {
+        $this->routes[] = [
+            'uri' => $uri,
+            'controller' => $controller,
+            'method' => 'PATCH'
+        ];
+    }
+
+    public function put($uri, $controller)
+    {
+        $this->routes[] = [
+            'uri' => $uri,
+            'controller' => $controller,
+            'method' => 'PUT'
+        ];
+    }
+
+    public function route($uri, $method)
+    {
+        // перебираем заполненный массив $this->routes
+        foreach ($this->routes as $route) {
+            // если uri в записанном методе (get,post...)
+            // совпадает с переданным $uri,
+            // и метод из массива $this->routes
+            // совпадает с переданным методом из запроса ($_SERVER)
+            if ($route['uri'] == $uri && $route['method'] == strtoupper($method)) {
+                // то вызывать страницу контроллера
+                // указанную в записанном методе (get,post...)
+                return require base_path($route['controller']);
+            }
+        }
+
+        $this->abort();
+    }
+
+    protected function abort($code = 404)
+    {
+        http_response_code($code);
+        require base_path("views/{$code}.php");
+        die();
+    }
+}
 
 
+
+
+//////
+// Старая реализация до перезаписи маршрутизатора
+//////
 
 /**
  * Показ своей страницы ошибки (по умолч. 404)
@@ -9,6 +93,7 @@
  * @param int - по умолчанию 404
  * 
  */
+/*
 function abort($code = 404) {
     http_response_code($code);
 
@@ -18,7 +103,7 @@ function abort($code = 404) {
     // остановка загрузки страницы
     die();
 }
-
+*/
 /**
  * Вызывает затребование страницы согласно маршруту
  * или 404
@@ -27,6 +112,7 @@ function abort($code = 404) {
  * @param array  $routes
  *  
  */
+/*
 function routeToController($uri, $routes) {
 //   5. И, наконец, если ключ (вбитое в адресную строку)
 //   есть в массиве маршрутов,
@@ -41,11 +127,13 @@ function routeToController($uri, $routes) {
         abort();
     }
 }
+*/
 
 // Логика маршрутов:
 // 2. Загружается массив из маршрутов 
 // (до тех пор, пока маршруты созданы как массив)
 
+/*
 $routes = require base_path('routes.php');
 
 // 3. Анализатором php изучается, 
@@ -62,6 +150,6 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 // 4. Вызывается функция
 
 routeToController($uri, $routes);
-
+*/
 
 ?>
