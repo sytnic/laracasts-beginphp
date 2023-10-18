@@ -12,8 +12,8 @@ $container->bind('Core\Database', function () {
     return new Database($config['database']);
 });
 
-$db = $container->resolve('Core\Database');
-dd($db);
+//$db = $container->resolve('Core\Database');
+//dd($db);
 //$container->resolve('asdsada');
 
-//App::setContainer($container);
+App::setContainer($container);
