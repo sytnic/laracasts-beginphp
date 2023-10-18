@@ -41,6 +41,7 @@ spl_autoload_register(function($class){
 //require base_path('Core/router.php');
 
 
+require base_path('bootstrap.php');
 
 // Логика маршрутов 2 (маршруты в методах):
 
