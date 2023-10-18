@@ -1,17 +1,18 @@
 <?php
 
 use Core\App;
-use Core\Database;
+//use Core\Database;
 
 //$config = require base_path('config.php');
 //$db = new Database($config['database']);
 
-$db = App::container()->resolve('Core\Database');
+//$db = App::container()->resolve('Core\Database');
+//dd($db);
+
+$db = App::container()->resolve(\Core\Database::class);
 dd($db);
 
 $currentUserId = 1;
-
-
 
   // delete action 
 
