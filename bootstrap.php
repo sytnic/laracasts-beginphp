@@ -16,4 +16,5 @@ $container->bind('Core\Database', function () {
 //dd($db);
 //$container->resolve('asdsada');
 
+// задать контейнер
 App::setContainer($container);
