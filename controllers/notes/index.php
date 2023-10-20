@@ -1,11 +1,12 @@
 <?php
 
+use Core\App;
 use Core\Database;
 
-$config = require base_path('config.php');
-// использовать слэш Core\ или use в начале файла
-//$db = new Core\Database($config['database']);
-$db = new Database($config['database']);
+//$config = require base_path('config.php');
+//$db = new Database($config['database']);
+
+$db = App::resolve(Database::class);
 
 $heading = "My Notes";
 
