@@ -9,6 +9,7 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 
+$heading = "Create Note";
 $errors = [];
 
 // если длина сообщения равна нулю или слишком большая, 
