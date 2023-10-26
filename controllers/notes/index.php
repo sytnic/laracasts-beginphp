@@ -1,4 +1,5 @@
 <?php
+// контроллер отображает все заметки
 
 use Core\App;
 use Core\Database;

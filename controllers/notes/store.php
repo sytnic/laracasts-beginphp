@@ -1,4 +1,5 @@
 <?php
+// контроллер сохраняет новую заметку в БД
 
 use Core\App;
 use Core\Validator;

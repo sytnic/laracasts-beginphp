@@ -1,4 +1,5 @@
 <?php
+// контроллер удаляет заметку из БД
 
 use Core\App;
 use Core\Database;

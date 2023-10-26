@@ -1,4 +1,5 @@
 <?php
+// контроллер покажет конкретную заметку
 
 use Core\App;
 use Core\Database;
