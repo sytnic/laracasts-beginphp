@@ -20,12 +20,11 @@ CREATE TABLE `notes` (
 INSERT INTO `notes` (`id`, `body`, `user_id`) VALUES
 (1,	'Ideas for next vacation',	1),
 (2,	'Next art project research',	2),
-(3,	'Work reminders...',	1),
 (4,	'Design techniques blog post',	2),
-(5,	'Thoughts on my continued learning of PHP',	1),
-(6,	'Keep Learning PHP...',	1),
+(5,	'Thoughts on my continued learning of PHP 123123',	1),
 (7,	'Work on <strong class=\"text-red-500\">Something</strong>',	1),
-(8,	'<h1>Ah, ah, ah</h1><script>alert(\"Hello from Javascript\");</script>',	1);
+(8,	'<h1>Ah, ah, ah</h1><script>alert(\"Hello from Javascript\");</script>',	1),
+(9,	'123 123 123 ',	1);
 
 DROP TABLE IF EXISTS `posts`;
 CREATE TABLE `posts` (
@@ -43,13 +42,14 @@ CREATE TABLE `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `users` (`id`, `name`, `email`) VALUES
-(1,	'John',	'john@example.com'),
-(2,	'Kate',	'kate@example.com'),
-(3,	'Jeffrey Way',	'@laracasts.com');
+INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
+(1,	'John',	'john@example.com',	'cleartext'),
+(2,	'Kate',	'kate@example.com',	''),
+(3,	'Jeffrey Way',	'@laracasts.com',	'');
 
--- 2023-09-13 13:32:32
+-- 2023-10-30 13:50:59

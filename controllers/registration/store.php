@@ -3,8 +3,8 @@
 //dd($_POST);
 
 use Core\Validator;
-//use Core\App;
-
+use Core\App;
+use Core\Database;
 
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -28,8 +28,13 @@ if (! empty($errors)) {
     ]);
 }
 
-//$db = App::resolve(Database::class);
-
+$db = App::resolve(Database::class);
 // check if the account already exists
+$result = $db->query('select * from users where email = :email', [
+    'email' => $email
+])->find();
+
+dd($result);
+
     // if yes, redirect to a login page.
     // if not, cave one to the database, and then log the user in, and redirect.
