@@ -30,11 +30,37 @@ if (! empty($errors)) {
 
 $db = App::resolve(Database::class);
 // check if the account already exists
-$result = $db->query('select * from users where email = :email', [
+$user = $db->query('select * from users where email = :email', [
     'email' => $email
 ])->find();
 
-dd($result);
+// 38.2 Find existing user
+// dd($user);
 
+if ($user) {
+    // then someone with that email already exists and has an account
     // if yes, redirect to a login page.
-    // if not, cave one to the database, and then log the user in, and redirect.
+    header('location: /');
+    exit();
+} else {
+    // if not, save one to the database, 
+    // and then log the user in, and redirect.
+    $db->query('INSERT INTO users(email,password) VALUES(:email,:password)', [
+        'email' => $email,
+        'password' => $password
+    ]);
+
+    // mark that the user has logged in
+    $_SESSION['logged_in'] = true; // как пример, далее не используется
+    $_SESSION['user'] = [
+        'email' => $email,
+    ];
+
+    header('location: /');
+    exit();
+}
+
+
+    
+
+    
