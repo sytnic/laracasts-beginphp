@@ -14,7 +14,8 @@ class Router {
         $this->routes[] = [
             'uri' => $uri,
             'controller' => $controller,
-            'method' => $method
+            'method' => $method,
+            'middleware' => null
         ];  
         // или как вариант:
         //$this->routes[] = compact('method','uri','controller');
@@ -75,7 +76,9 @@ class Router {
 
     public function only($key)
     {
-        dd($key);
+        //dd($key);
+        $this->routes[array_key_last($this->routes)]['middleware'] = $key;
+        dd($this->routes);
     }
 }
 
