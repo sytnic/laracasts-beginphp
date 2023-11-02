@@ -17,32 +17,34 @@ class Router {
             'method' => $method
         ];  
         // или как вариант:
-        //$this->routes[] = compact('method','uri','controller'); 
+        //$this->routes[] = compact('method','uri','controller');
+        
+        return $this;
     }
 
     public function get($uri, $controller)
     {
-        $this->add('GET', $uri, $controller);
+        return $this->add('GET', $uri, $controller);
     }
 
     public function post($uri, $controller)
     {
-        $this->add('POST', $uri, $controller);
+        return $this->add('POST', $uri, $controller);
     }
 
     public function delete($uri, $controller)
     {
-        $this->add('DELETE', $uri, $controller);
+        return $this->add('DELETE', $uri, $controller);
     }
 
     public function patch($uri, $controller)
     {
-        $this->add('PATCH', $uri, $controller);
+        return $this->add('PATCH', $uri, $controller);
     }
 
     public function put($uri, $controller)
     {
-        $this->add('PUT', $uri, $controller);
+        return $this->add('PUT', $uri, $controller);
     }
 
     public function route($uri, $method)
@@ -68,6 +70,12 @@ class Router {
         http_response_code($code);
         require base_path("views/{$code}.php");
         die();
+    }
+
+
+    public function only($key)
+    {
+        dd($key);
     }
 }
 
