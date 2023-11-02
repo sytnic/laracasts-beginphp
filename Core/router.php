@@ -57,6 +57,14 @@ class Router {
             // и метод из массива $this->routes
             // совпадает с переданным методом из запроса ($_SERVER)
             if ($route['uri'] == $uri && $route['method'] == strtoupper($method)) {
+                // apply the middleware
+                if ($route['middleware'] == 'guest') {
+                    if ($_SESSION['user'] ?? false) {
+                        header('location: /');
+                        exit;
+                    }
+                }
+                
                 // то вызывать страницу контроллера
                 // указанную в записанном методе (get,post...)
                 return require base_path($route['controller']);
@@ -78,7 +86,8 @@ class Router {
     {
         //dd($key);
         $this->routes[array_key_last($this->routes)]['middleware'] = $key;
-        dd($this->routes);
+        //dd($this->routes);
+        return $this;
     }
 }
 
