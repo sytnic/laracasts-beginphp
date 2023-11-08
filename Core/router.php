@@ -4,6 +4,7 @@ namespace Core;
 
 use Core\Middleware\Auth;
 use Core\Middleware\Guest;
+use Core\Middleware\Middleware;
 
 class Router {
 
@@ -65,6 +66,13 @@ class Router {
                 // будут вынесены в отдельную папку Middleware
                 
                 // apply the middleware
+            
+                if ($route['middleware']) { 
+                    $middleware = Middleware::MAP[$route['middleware']];
+
+                    (new $middleware)->handle();
+                }
+            /*
                 if ($route['middleware'] == 'guest') {
                     (new Guest)->handle();
                 }
@@ -74,7 +82,8 @@ class Router {
                 if ($route['middleware'] == 'auth') {
                     (new Auth)->handle();
                 }
-                
+            */
+                        
                 // то вызывать страницу контроллера
                 // указанную в записанном методе (get,post...)
                 return require base_path($route['controller']);
