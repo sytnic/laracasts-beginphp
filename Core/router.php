@@ -2,6 +2,9 @@
 
 namespace Core;
 
+use Core\Middleware\Auth;
+use Core\Middleware\Guest;
+
 class Router {
 
     public $routes = [];
@@ -58,21 +61,18 @@ class Router {
             // совпадает с переданным методом из запроса ($_SERVER)
             if ($route['uri'] == $uri && $route['method'] == strtoupper($method)) {
 
+                // Элементы if ($route['middleware']
+                // будут вынесены в отдельную папку Middleware
+                
                 // apply the middleware
                 if ($route['middleware'] == 'guest') {
-                    if ($_SESSION['user'] ?? false) {
-                        header('location: /');
-                        exit();
-                    }
+                    (new Guest)->handle();
                 }
 
                 // так не можем получить доступ к /notes,
                 // если не вошли в систему
                 if ($route['middleware'] == 'auth') {
-                    if (! $_SESSION['user'] ?? false) {
-                        header('location: /');
-                        exit();
-                    }
+                    (new Auth)->handle();
                 }
                 
                 // то вызывать страницу контроллера
