@@ -57,11 +57,21 @@ class Router {
             // и метод из массива $this->routes
             // совпадает с переданным методом из запроса ($_SERVER)
             if ($route['uri'] == $uri && $route['method'] == strtoupper($method)) {
+
                 // apply the middleware
                 if ($route['middleware'] == 'guest') {
                     if ($_SESSION['user'] ?? false) {
                         header('location: /');
-                        exit;
+                        exit();
+                    }
+                }
+
+                // так не можем получить доступ к /notes,
+                // если не вошли в систему
+                if ($route['middleware'] == 'auth') {
+                    if (! $_SESSION['user'] ?? false) {
+                        header('location: /');
+                        exit();
                     }
                 }
                 
