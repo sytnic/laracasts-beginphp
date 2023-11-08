@@ -65,13 +65,10 @@ class Router {
                 // Элементы if ($route['middleware']
                 // будут вынесены в отдельную папку Middleware
                 
-                // apply the middleware
-            
-                if ($route['middleware']) { 
-                    $middleware = Middleware::MAP[$route['middleware']];
-
-                    (new $middleware)->handle();
-                }
+                // apply the middleware            
+               
+                    Middleware::resolve($route['middleware']);
+                
             /*
                 if ($route['middleware'] == 'guest') {
                     (new Guest)->handle();
