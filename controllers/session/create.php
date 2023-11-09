@@ -1,3 +1,5 @@
 <?php
 
-dd('login!');
+//dd('login!');
+
+view('session/create.view.php');
