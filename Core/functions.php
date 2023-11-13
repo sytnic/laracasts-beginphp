@@ -45,4 +45,13 @@ function view($path, $attributes = []) {
     require base_path('views/'.$path);  // /views/index.view.php
 }
 
+// $user == array
+function login ($user) {
+    // mark that the user has logged in
+    
+    $_SESSION['user'] = [
+        'email' => $user['email']
+    ];
+}
+
 ?>

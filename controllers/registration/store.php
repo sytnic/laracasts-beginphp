@@ -50,11 +50,8 @@ if ($user) {
         'password' => password_hash($password, PASSWORD_BCRYPT)
     ]);
 
-    // mark that the user has logged in
-    $_SESSION['logged_in'] = true; // как пример, далее не используется
-    $_SESSION['user'] = [
-        'email' => $email,
-    ];
+    // $user == array
+    login($user);
 
     header('location: /');
     exit();
