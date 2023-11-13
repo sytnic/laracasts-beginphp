@@ -46,29 +46,22 @@ $user = $db->query('select * from users where email = :email', [
 // Если пользователя нет в БД, выдаст false.
 //dd($user);
 
-// Если пользователя нет, выдаёт сообщение об ошибке.
-if(! $user) {
-    return view('session/create.view.php', [
-            'errors' => [
-                'email' => 'No matching account found for that email address.'
-            ]
-        ]
-    );
-}
+// Если пользователя есть
+if($user) {
+    // Если пользователь (логин) верный, 
+    // нужно проверить правильный ли предоставлен пароль
 
-// Если пользователь (логин) верный, 
-// нужно проверить правильный ли предоставлен пароль
+    // Если пароль верный,
+    // то зарегистрировать пользователя как вошедшего
+    if (password_verify($password, $user['password'])) {
+        // login
+        login([
+            'email' => $email
+        ]);
 
-// Если пароль верный,
-// то зарегистрировать пользователя как вошедшего
-if (password_verify($password, $user['password'])) {
-    // login
-    login([
-        'email' => $email
-    ]);
-
-    header('location: /');
-    exit();
+        header('location: /');
+        exit();
+    }    
 }
 
 // Иначе, если пользователь не прошёл проверку,
