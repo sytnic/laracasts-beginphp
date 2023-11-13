@@ -49,8 +49,7 @@
                       <a href="/login"    class="<?= urlIs("/login") ? "bg-gray-900 text-white " : "text-gray-300 " ?>
                                           hover:bg-gray-700 hover:text-white  rounded-md px-3 py-2 text-sm font-medium">Log in</a>
                   <?php endif; ?>
-             
-              </div>
+              </div> 
 
               <!--
                 Dropdown menu, show/hide based on menu state.
@@ -69,6 +68,16 @@
                 <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
               </div>
             </div>
+
+            <?php if ($_SESSION['user'] ?? false) : ?>
+            <div class="ml-3 text-white">
+              <form method="POST" action="/session">
+                <input type="hidden" name="_method" value="DELETE" />
+                <button>Log out</button>                  
+              </form>
+            </div>
+            <?php endif; ?>
+
           </div>
         </div>
         <div class="-mr-2 flex md:hidden">
