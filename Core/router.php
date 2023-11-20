@@ -83,7 +83,7 @@ class Router {
                         
                 // то вызывать страницу контроллера
                 // указанную в записанном методе (get,post...)
-                return require base_path($route['controller']);
+                return require base_path('Http/controllers/'.$route['controller']);
             }
         }
 
